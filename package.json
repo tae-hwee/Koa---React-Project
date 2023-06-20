@@ -1,0 +1,9 @@
+{
+  "name": "my-recruitment-project",
+  "version": "1.0.0",
+  "description": "Project for Fittrix recruitment",
+  "main": "index.js",
+  "repository": "https://github.com/tae-hwee/fittrixProject",
+  "author": "taehwee_park <hweetae@gmail.com>",
+  "license": "MIT"
+}
