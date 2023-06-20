@@ -8,7 +8,8 @@
   "author": "taehwee_park <hweetae@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "koa": "^2.14.2"
+    "koa": "^2.14.2",
+    "koa-router": "^12.0.0"
   },
   "scripts": {
     "start": "node src",
