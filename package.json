@@ -1,9 +1,13 @@
 {
   "name": "my-recruitment-project",
   "version": "1.0.0",
-  "description": "Project for Fittrix recruitment",
+  "type": "module",
+  "description": "Fittrix Recruitment Project",
   "main": "index.js",
   "repository": "https://github.com/tae-hwee/fittrixProject",
   "author": "taehwee_park <hweetae@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^2.14.2"
+  }
 }
