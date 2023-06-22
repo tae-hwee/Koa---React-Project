@@ -8,8 +8,10 @@
   "author": "taehwee_park <hweetae@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^16.3.1",
     "koa": "^2.14.2",
-    "koa-router": "^12.0.0"
+    "koa-router": "^12.0.0",
+    "mongoose": "^7.3.1"
   },
   "scripts": {
     "start": "node src",
