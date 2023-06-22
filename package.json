@@ -1,7 +1,7 @@
 {
   "name": "my-recruitment-project",
   "version": "1.0.0",
-  "type": "module",
+  "type": "commonjs",
   "description": "Fittrix Recruitment Project",
   "main": "index.js",
   "repository": "https://github.com/tae-hwee/fittrixProject",
