@@ -1,21 +1,22 @@
 {
-  "name": "my-recruitment-project",
-  "version": "1.0.0",
-  "type": "commonjs",
-  "description": "Fittrix Recruitment Project",
-  "main": "index.js",
-  "repository": "https://github.com/tae-hwee/fittrixProject",
-  "author": "taehwee_park <hweetae@gmail.com>",
-  "license": "MIT",
-  "dependencies": {
-    "dotenv": "^16.3.1",
-    "koa": "^2.14.2",
-    "koa-bodyparser": "^4.4.1",
-    "koa-router": "^12.0.0",
-    "mongoose": "^7.3.1"
-  },
-  "scripts": {
-    "start": "node src",
-    "start:dev": "nodemon --watch src/ src/index.js"
-  }
+    "name": "my-recruitment-project",
+    "version": "1.0.0",
+    "type": "commonjs",
+    "description": "Fittrix Recruitment Project",
+    "main": "index.js",
+    "repository": "https://github.com/tae-hwee/fittrixProject",
+    "author": "taehwee_park <hweetae@gmail.com>",
+    "license": "MIT",
+    "dependencies": {
+        "dotenv": "^16.3.1",
+        "joi": "^17.9.2",
+        "koa": "^2.14.2",
+        "koa-bodyparser": "^4.4.1",
+        "koa-router": "^12.0.0",
+        "mongoose": "^7.3.1"
+    },
+    "scripts": {
+        "start": "NODE_PATH=src node src",
+        "start:dev": "NODE_PATH=src nodemon --watch src/ src/index.js"
+    }
 }
