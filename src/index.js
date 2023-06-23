@@ -7,6 +7,21 @@ const app = new Koa();
 const router = new Router();
 const api = require('./api');
 
+const port = process.env.PORT || 4000;          // .env에서 port 번호 받아오고, PORT가 설정되지 않은 경우 4000 사용
+
+const mongoose = require('mongoose');
+
+mongoose.Promise = global.Promise;              // Node의 native Promise 사용 -> 동기
+// mongodb connection
+mongoose.connect(process.env.MONGO_URI, {
+}).then(
+    (response) => {
+        console.log('Successfully connected to mongodb');
+    }
+).catch(e => {
+    console.error(e);
+});
+
 router.get('/', (ctx, next) => {
     ctx.body = 'Home';
 });
@@ -35,6 +50,6 @@ router.use('/api', api.routes());                   // api route를 /api 경로 
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-app.listen(4000, () => {
-    console.log("THe server is listening to port 4000");
+app.listen(port, () => {
+    console.log("THe server is listening to port " + port);
 });
