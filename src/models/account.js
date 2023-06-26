@@ -56,7 +56,7 @@ Account.statics.localRegister = function ({ userName, email, password }) {
         password: hash(password),
     });
 
-    return acccount.save();
+    return account.save();
 };
 
 Account.methods.validatePassword = function (password) {
