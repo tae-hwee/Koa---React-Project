@@ -2,19 +2,8 @@ require('dotenv').config();
 
 const Koa = require('koa');
 const Router = require('koa-router');
-const jwt = require('jsonwebtoken');
-const token = jwt.sign(
-    { foo: 'bar' },
-    'secret-key',
-    { expiresIn: '7d' },
-    (err, token) => {
-        if (err) {
-            console.log(err);
-            return;
-        }
-        console.log(token);
-    }
-);
+
+const { jwtMiddleware } = require('lib/token');
 
 const app = new Koa();
 const router = new Router();
@@ -60,6 +49,10 @@ router.get('/insert', (ctx, next) => {
         ctx.body = 'Posting ID Not Found';
     }
 });
+
+// api route가 적용되기 전에 jwtMiddleware를 먼저 적용
+app.use(bodyParser());
+app.use(jwtMiddleware);
 
 router.use('/api', api.routes()); // api route를 /api 경로 하위 route로 설정
 

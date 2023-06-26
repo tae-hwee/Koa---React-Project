@@ -112,6 +112,18 @@ exports.exists = async (ctx) => {
     };
 };
 
+// cookie에 access token 정보가 있으면 현재 로그인된 유저 정보를 알려주는 api
+exports.check = (ctx) => {
+    const { user } = ctx.request;
+
+    if (!user) {
+        ctx.status = 403;
+        return;
+    }
+
+    ctx.body = user.profile;
+};
+
 // 로그아웃
 exports.logout = async (ctx) => {
     // 쿠키에 저장된 인증 토큰 삭제하는 방식으로 logout 기능 구현
