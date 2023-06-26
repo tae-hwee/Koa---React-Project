@@ -12,6 +12,27 @@ exports.localRegister = async (ctx) => {
         password: Joi.string().required().min(6),
     });
 
+    // 회원가입 전에 아이디와 이메일 주소 중복 체크 진행
+    let existing = null;
+    try {
+        existing = await Account.findByEmailOrUserName(ctx.request.body);
+    } catch (e) {
+        ctx.throw(500, e);
+    }
+
+    // 중복이 있는 경우
+    if (existing) {
+        ctx.status = 400; // 400 에러 뱉고
+        // 어떤 값이 중복됐는 지 메시지
+        ctx.body = {
+            key:
+                existing.email === ctx.request.body.email
+                    ? 'email'
+                    : 'userName',
+        };
+        return;
+    }
+
     let account = null;
     try {
         account = await Account.localRegister(ctx.request.body);
