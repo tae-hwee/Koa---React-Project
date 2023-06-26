@@ -2,6 +2,19 @@ require('dotenv').config();
 
 const Koa = require('koa');
 const Router = require('koa-router');
+const jwt = require('jsonwebtoken');
+const token = jwt.sign(
+    { foo: 'bar' },
+    'secret-key',
+    { expiresIn: '7d' },
+    (err, token) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        console.log(token);
+    }
+);
 
 const app = new Koa();
 const router = new Router();
