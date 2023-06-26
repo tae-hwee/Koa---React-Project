@@ -74,7 +74,7 @@ exports.exists = async (ctx) => {
     let account = null;
 
     try {
-        // key 에 따라 findByEmail 혹은 findByUsername 을 실행합니다.
+        // key 에 따라 findByEmail 혹은 findByUsername 실행
         account = await (key === 'email'
             ? Account.findByEmail(value)
             : Account.findByUsername(value));
