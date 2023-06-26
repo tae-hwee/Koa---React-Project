@@ -40,6 +40,19 @@ exports.localRegister = async (ctx) => {
         ctx.throw(500, e);
     }
 
+    // 회원가입 완료되면 토큰 발급하고, 이를 쿠키에 저장
+    let token = null;
+    try {
+        token = await account.generateToken();
+    } catch (e) {
+        ctx.throw(500, e);
+    }
+
+    // cookie는 보안 위해 httpOnly로 하고, 유효기간 7일로 설정
+    ctx.cookies.set('access_token', token, {
+        httpOnly: true,
+        maxAge: 1000 * 60 * 60 * 24 * 7,
+    });
     ctx.body = account.profile;
 };
 
@@ -65,6 +78,18 @@ exports.localLogin = async (ctx) => {
         return;
     }
 
+    // 로그인 완료되면 인증 토큰 발급
+    let token = null;
+    try {
+        token = await account.generateToken();
+    } catch (e) {
+        ctx.throw(500, e);
+    }
+
+    ctx.cookies.set('access_token', token, {
+        httpOnly: true,
+        maxAge: 1000 * 60 * 60 * 24 * 7,
+    });
     ctx.body = account.profile;
 };
 
