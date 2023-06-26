@@ -36,4 +36,32 @@ const Account = new Schema({
     createdAt: { type: Date, default: Date.now },
 });
 
+Account.statics.findByUserName = function (userName) {
+    return this.findOne({ 'profile.userName': userName }).exec();
+};
+
+Account.statics.findByEmailOrUserName = function ({ userName, email }) {
+    return this.findOne({
+        $or: [{ 'profile.userName': userName }, { email }],
+    }).exec();
+};
+
+Account.statics.localRegister = function ({ userName, email, password }) {
+    const account = new this({
+        profile: {
+            userName,
+            // thumbnail은 우선 기본값으로 설정되게 함
+        },
+        email,
+        password: hash(password),
+    });
+
+    return acccount.save();
+};
+
+Account.methods.validatePassword = function (password) {
+    const hashed = hash(password);
+    return this.password === hashed;
+};
+
 module.exports = mongoose.model('Account', Account);
