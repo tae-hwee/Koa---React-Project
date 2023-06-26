@@ -10,6 +10,7 @@ const api = require('./api');
 const port = process.env.PORT || 4000; // .env에서 port 번호 받아오고, PORT가 설정되지 않은 경우 4000 사용
 
 const mongoose = require('mongoose');
+const bodyParser = require('koa-bodyparser');
 
 mongoose.Promise = global.Promise; // Node의 native Promise 사용 -> 동기
 // mongodb connection
@@ -25,6 +26,8 @@ mongoose
 router.get('/', (ctx, next) => {
     ctx.body = 'Home';
 });
+
+app.use(bodyParser()); // body parser 적용
 
 router.get('/introduction', (ctx, next) => {
     // '/' 외 여러 route를 설정
