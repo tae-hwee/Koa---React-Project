@@ -45,7 +45,27 @@ exports.localRegister = async (ctx) => {
 
 // local 로그인
 exports.localLogin = async (ctx) => {
-    ctx.body = 'login';
+    const schema = Joi.object().keys({
+        email: Joi.string().email().required(),
+        password: Joi.string().required(),
+    });
+
+    const { email, password } = ctx.request.body;
+
+    let account = null;
+    try {
+        account = await Account.findByEmail(email);
+    } catch (e) {
+        ctx.throw(500, e);
+    }
+
+    if (!account || !account.validatePassword(password)) {
+        // 존재하지 않는 사용자 혹은 잘못된 비밀번호의 경우 403
+        ctx.status = 403; // forbidden error
+        return;
+    }
+
+    ctx.body = account.profile;
 };
 
 // 이메일 혹은 아이디 존재 여부 확인

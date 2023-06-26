@@ -40,6 +40,10 @@ Account.statics.findByUserName = function (userName) {
     return this.findOne({ 'profile.userName': userName }).exec();
 };
 
+Account.statics.findByEmail = function (email) {
+    return this.findOne({ email }).exec();
+};
+
 Account.statics.findByEmailOrUserName = function ({ userName, email }) {
     return this.findOne({
         $or: [{ 'profile.userName': userName }, { email }],
