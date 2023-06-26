@@ -4,12 +4,12 @@ import {
     InputWithLabel,
     AuthButton,
     RightAlignedLink,
-} from '../../components/Auth';
+} from 'components/Auth';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as authActions from '../../redux/modules/auth';
+import * as authActions from 'redux/modules/auth';
 
-class Login extends Component {
+class Register extends Component {
     handleChange = (e) => {
         const { AuthActions } = this.props;
         const { name, value } = e.target;
@@ -17,21 +17,29 @@ class Login extends Component {
         AuthActions.changeInput({
             name,
             value,
-            form: 'login',
+            form: 'register',
         });
     };
 
     render() {
-        const { email, password } = this.props.form.toJS(); // form 에서 email 과 password 값을 읽어옴
+        const { email, userName, password, passwordConfirm } =
+            this.props.form.toJS();
         const { handleChange } = this;
 
         return (
-            <AuthContent title="로그인">
+            <AuthContent title="회원가입">
                 <InputWithLabel
                     label="이메일"
                     name="email"
                     placeholder="이메일"
                     value={email}
+                    onChange={handleChange}
+                />
+                <InputWithLabel
+                    label="아이디"
+                    name="userName"
+                    placeholder="아이디"
+                    value={userName}
                     onChange={handleChange}
                 />
                 <InputWithLabel
@@ -42,10 +50,16 @@ class Login extends Component {
                     value={password}
                     onChange={handleChange}
                 />
-                <AuthButton>로그인</AuthButton>
-                <RightAlignedLink to="/auth/register">
-                    회원가입
-                </RightAlignedLink>
+                <InputWithLabel
+                    label="비밀번호 확인"
+                    name="passwordConfirm"
+                    placeholder="비밀번호 확인"
+                    type="password"
+                    value={passwordConfirm}
+                    onChange={handleChange}
+                />
+                <AuthButton>회원가입</AuthButton>
+                <RightAlignedLink to="/auth/login">로그인</RightAlignedLink>
             </AuthContent>
         );
     }
@@ -53,9 +67,9 @@ class Login extends Component {
 
 export default connect(
     (state) => ({
-        form: state.auth.getIn(['login', 'form']),
+        form: state.auth.getIn(['register', 'form']),
     }),
     (dispatch) => ({
         AuthActions: bindActionCreators(authActions, dispatch),
     })
-)(Login);
+)(Register);
