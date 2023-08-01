@@ -1,5 +1,5 @@
 # Node.js - React Project
-Self-learning Project. (Node.js - React)
+Self-learning Project. (Koa - JavaScript / React - JavaScript)
 
 * 개발 환경
 	- FE: react (17.0.2), javascript
