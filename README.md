@@ -1,5 +1,5 @@
 # fittrixProject
-Project for Fittrix recruitment
+Self-learning Project. (Node.js - React)
 
 * 개발 환경
 	- FE: react (17.0.2), javascript
