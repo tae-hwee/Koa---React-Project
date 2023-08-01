@@ -1,4 +1,4 @@
-# fittrixProject
+# Node.js - React Project
 Self-learning Project. (Node.js - React)
 
 * 개발 환경
